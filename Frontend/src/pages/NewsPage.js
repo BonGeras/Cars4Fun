@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import PostItem from '../components/PostItem';
+import Pagination from '../components/Pagination';
 import styled from 'styled-components';
 
 const PageContainer = styled.div`
@@ -82,23 +84,37 @@ const PostsGrid = styled.div`
 `;
 
 function NewsPage() {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [posts, setPosts] = useState([]);
     const [searchTag, setSearchTag] = useState('');
+    const [pagination, setPagination] = useState({
+        currentPage: 1,
+        totalPages: 1,
+        totalItems: 0
+    });
 
     useEffect(() => {
-        fetchPosts();
-    }, []);
+        const page = parseInt(searchParams.get('page')) || 1;
+        const tag = searchParams.get('tag') || '';
+        setSearchTag(tag);
+        fetchPosts(page, tag);
+    }, [searchParams]);
 
-    async function fetchPosts(tagValue = '') {
+    async function fetchPosts(page = 1, tagValue = '') {
         try {
-            let url = '/api/posts/news';
+            let url = `/api/posts/news?page=${page}`;
             if (tagValue) {
-                url += `?tag=${encodeURIComponent(tagValue)}`;
+                url += `&tag=${encodeURIComponent(tagValue)}`;
             }
 
             const res = await fetch(url);
             const data = await res.json();
-            setPosts(Array.isArray(data) ? data : []);
+            setPosts(data.posts || []);
+            setPagination({
+                currentPage: data.currentPage,
+                totalPages: data.totalPages,
+                totalItems: data.totalItems
+            });
         } catch (err) {
             console.error(err);
             setPosts([]);
@@ -107,8 +123,12 @@ function NewsPage() {
 
     function handleSearch(e) {
         e.preventDefault();
-        fetchPosts(searchTag);
+        setSearchParams({ page: '1', ...(searchTag && { tag: searchTag }) });
     }
+
+    const handlePageChange = (newPage) => {
+        setSearchParams({ page: newPage.toString(), ...(searchTag && { tag: searchTag }) });
+    };
 
     return (
         <PageContainer>
@@ -133,6 +153,12 @@ function NewsPage() {
                     <PostItem key={post.id} post={post} />
                 ))}
             </PostsGrid>
+            
+            <Pagination 
+                currentPage={pagination.currentPage}
+                totalPages={pagination.totalPages}
+                onPageChange={handlePageChange}
+            />
         </PageContainer>
     );
 }

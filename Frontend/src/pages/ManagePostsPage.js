@@ -126,7 +126,10 @@ function ManagePostsPage() {
             const userId = localStorage.getItem('userId');
             const role = localStorage.getItem('role');
 
-            let url = `/api/posts/${categoryParam}?role=${role}`;
+            
+            const category = categoryParam || 'reviews';
+            let url = `/api/posts/${category}?role=${role}`;
+            
             if (role === 'user') {
                 url += `&userId=${userId}`;
             }
@@ -142,7 +145,7 @@ function ManagePostsPage() {
 
             const data = await res.json();
             console.log('Fetched posts:', data);
-            setPosts(data);
+            setPosts(data.posts || []);
         } catch (err) {
             console.error('Error fetching posts:', err);
             setError('Failed to load posts');
@@ -150,8 +153,6 @@ function ManagePostsPage() {
             setLoading(false);
         }
     };
-
-
 
     const canManagePost = (post) => {
         if (role === 'admin') return true;

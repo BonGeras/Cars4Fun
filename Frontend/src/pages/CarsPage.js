@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import PostItem from '../components/PostItem';
 import Pagination from '../components/Pagination';
 import styled from 'styled-components';

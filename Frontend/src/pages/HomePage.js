@@ -45,9 +45,9 @@ function HomePage() {
         fetchPosts(page);
     }, [searchParams]);
 
-    async function fetchPosts(page = 1) {
+    async function fetchPosts(page) {
         try {
-            const res = await fetch(`/api/posts/recent?page=${page}`);
+            const res = await fetch(`/api/posts/recent?page=${page}&limit=9`);
             if (!res.ok) throw new Error(`Error: ${res.status}`);
 
             const data = await res.json();

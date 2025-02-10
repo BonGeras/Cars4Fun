@@ -3,7 +3,7 @@ const { Post, User, Tag } = require('../models');
 exports.getPostsByCategory = async (req, res) => {
     try {
         const { category } = req.params;
-        const { tag, userId, role, page = 1, limit = 6 } = req.query;
+        const { tag, userId, role, page = 1, limit = 9 } = req.query;
         const offset = (page - 1) * limit;
 
         const include = [{
@@ -48,7 +48,7 @@ exports.getPostsByCategory = async (req, res) => {
 
 exports.getRecentPosts = async (req, res) => {
     try {
-        const { page = 1, limit = 6 } = req.query;
+        const { page = 1, limit = 9 } = req.query;
         const offset = (page - 1) * limit;
 
         const { count, rows: posts } = await Post.findAndCountAll({

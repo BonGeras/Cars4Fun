@@ -100,9 +100,9 @@ function NewsPage() {
         fetchPosts(page, tag);
     }, [searchParams]);
 
-    async function fetchPosts(page = 1, tagValue = '') {
+    async function fetchPosts(page, tagValue = '') {
         try {
-            let url = `/api/posts/news?page=${page}`;
+            let url = `/api/posts/news?page=${page}&limit=9`;
             if (tagValue) {
                 url += `&tag=${encodeURIComponent(tagValue)}`;
             }

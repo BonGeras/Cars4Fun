@@ -100,9 +100,9 @@ function BrandsPage() {
         fetchPosts(page, tag);
     }, [searchParams]);
 
-    async function fetchPosts(page = 1, tagValue = '') {
+    async function fetchPosts(page, tagValue = '') {
         try {
-            let url = `/api/posts/brands?page=${page}`;
+            let url = `/api/posts/brands?page=${page}&limit=9`;
             if (tagValue) {
                 url += `&tag=${encodeURIComponent(tagValue)}`;
             }

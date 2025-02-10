@@ -102,7 +102,7 @@ function CarsPage() {
 
     async function fetchPosts(page, tagValue = '') {
         try {
-            let url = `/api/posts/cars?page=${page}`;
+            let url = `/api/posts/cars?page=${page}&limit=9`;
             if (tagValue) {
                 url += `&tag=${encodeURIComponent(tagValue)}`;
             }

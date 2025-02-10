@@ -102,7 +102,7 @@ function ReviewsPage() {
 
     async function fetchPosts(page, tagValue = '') {
         try {
-            let url = `/api/posts/reviews?page=${page}`;
+            let url = `/api/posts/reviews?page=${page}&limit=9`;
             if (tagValue) {
                 url += `&tag=${encodeURIComponent(tagValue)}`;
             }

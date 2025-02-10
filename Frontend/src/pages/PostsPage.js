@@ -25,21 +25,18 @@ const PostsPage = () => {
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
-        // При изменении страницы прокручиваем наверх
         window.scrollTo(0, 0);
     };
 
     return (
         <div className="posts-page">
-            {/* Список постов */}
             <div className="posts-grid">
                 {posts.map(post => (
                     <PostCard key={post.id} post={post} />
                 ))}
             </div>
 
-            {/* Компонент пагинации */}
-            <Pagination 
+            <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
                 onPageChange={handlePageChange}

@@ -6,7 +6,11 @@ import NewsPostView from '../components/NewsPostView';
 import ReviewPostView from '../components/ReviewPostView';
 
 function SinglePostPage() {
+<<<<<<< HEAD
     const { id } = useParams();
+=======
+    const { id } = useParams(); // /posts/:id
+>>>>>>> 9de206efb49b8183a0366f9a0d0fc01e86640251
     const [post, setPost] = useState(null);
     const [error, setError] = useState('');
     const token = localStorage.getItem('token');

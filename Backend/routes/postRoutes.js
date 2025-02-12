@@ -10,6 +10,10 @@ const {
     getRecentPosts
 } = require('../controllers/postController');
 
+<<<<<<< HEAD
+=======
+// Specific routes first
+>>>>>>> 9de206efb49b8183a0366f9a0d0fc01e86640251
 router.get('/recent', getRecentPosts);
 router.get('/id/:id', async (req, res) => {
     try {
@@ -33,6 +37,10 @@ router.get('/id/:id', async (req, res) => {
     }
 });
 
+<<<<<<< HEAD
+=======
+// Generic routes last
+>>>>>>> 9de206efb49b8183a0366f9a0d0fc01e86640251
 router.get('/:category', getPostsByCategory);
 router.post('/', authMiddleware, createPost);
 router.put('/:id', authMiddleware, updatePost);

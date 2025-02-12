@@ -3,55 +3,60 @@ import styled from 'styled-components';
 import PhotoCarousel from './PhotoCarousel';
 
 const Container = styled.div`
-  padding: 20px 50px;
-  background-color: #f9f9f9;
+    padding: 20px 50px;
+    background-color: #f9f9f9;
+    max-width: 1200px;
+    margin: 0 auto;
 `;
 
 const Title = styled.h1`
-  margin-bottom: 20px;
-  color: #333;
+    margin-bottom: 20px;
+    color: #333;
 `;
 
-const Row = styled.div`
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
+const ContentLayout = styled.div`
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 2rem;
+    align-items: start;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+`;
+
+const TextContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 `;
 
 const PhotoSection = styled.div`
-  flex: 2;
-  position: relative;
+    position: sticky;
+    top: 2rem;
+    
+    @media (max-width: 768px) {
+        position: static;
+        margin-bottom: 2rem;
+    }
 `;
 
-const IntroSection = styled.div`
-  flex: 1;
-  padding: 15px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-`;
-
-const ReviewSection = styled.div`
-  padding: 15px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+const Section = styled.div`
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 `;
 
 const SectionTitle = styled.h2`
-  margin-bottom: 15px;
-  color: #333;
+    margin-bottom: 15px;
+    color: #333;
 `;
 
 const SectionText = styled.p`
-  line-height: 1.6;
-  color: #555;
-  margin: 0;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
 `;
 
 function ReviewPostView({ post }) {
@@ -64,32 +69,35 @@ function ReviewPostView({ post }) {
     return (
         <Container>
             <Title>{post.title}</Title>
+            
+            <ContentLayout>
+                <TextContent>
+                    <Section>
+                        <SectionTitle>Introduction</SectionTitle>
+                        <SectionText>
+                            {post.review_intro || 'No text for introduction section...'}
+                        </SectionText>
+                    </Section>
 
-            <Row>
+                    <Section>
+                        <SectionTitle>Driving Experience</SectionTitle>
+                        <SectionText>
+                            {post.review_driving || 'No text for driving experience section...'}
+                        </SectionText>
+                    </Section>
+
+                    <Section>
+                        <SectionTitle>Design and Comfort</SectionTitle>
+                        <SectionText>
+                            {post.review_design || 'No text for design and comfort section...'}
+                        </SectionText>
+                    </Section>
+                </TextContent>
+
                 <PhotoSection>
                     <PhotoCarousel photos={photos} />
                 </PhotoSection>
-                <IntroSection>
-                    <SectionTitle>Introduction</SectionTitle>
-                    <SectionText>
-                        {post.review_intro || 'No text for introduction section...'}
-                    </SectionText>
-                </IntroSection>
-            </Row>
-
-            <ReviewSection>
-                <SectionTitle>Driving Experience</SectionTitle>
-                <SectionText>
-                    {post.review_driving || 'No text for driving experience section...'}
-                </SectionText>
-            </ReviewSection>
-
-            <ReviewSection>
-                <SectionTitle>Design and Comfort</SectionTitle>
-                <SectionText>
-                    {post.review_design || 'No text for design and comfort section...'}
-                </SectionText>
-            </ReviewSection>
+            </ContentLayout>
         </Container>
     );
 }

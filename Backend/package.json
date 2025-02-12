@@ -1,7 +1,11 @@
 {
   "name": "cars4fun-backend",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "Backend for CARS4FUN",
+=======
+  "description": "Backend for CARS4FUN with Sequelize and MySQL",
+>>>>>>> 9de206efb49b8183a0366f9a0d0fc01e86640251
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

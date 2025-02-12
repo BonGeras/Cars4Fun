@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         image3: { type: DataTypes.BLOB('long'), allowNull: true },
         image4: { type: DataTypes.BLOB('long'), allowNull: true },
 
+<<<<<<< HEAD
         brand_intro: { type: DataTypes.TEXT },
         brand_history: { type: DataTypes.TEXT },
         brand_philosophy: { type: DataTypes.TEXT },
@@ -32,6 +33,21 @@ module.exports = (sequelize, DataTypes) => {
         car_engines: { type: DataTypes.STRING },
 
         news_text: { type: DataTypes.TEXT }
+=======
+        brand_intro: { type: DataTypes.TEXT, allowNull: true },
+        brand_history: { type: DataTypes.TEXT, allowNull: true },
+        brand_philosophy: { type: DataTypes.TEXT, allowNull: true },
+
+        review_intro: { type: DataTypes.TEXT, allowNull: true },
+        review_driving: { type: DataTypes.TEXT, allowNull: true },
+        review_design: { type: DataTypes.TEXT, allowNull: true },
+
+        car_years: { type: DataTypes.STRING, allowNull: true },
+        car_bodytype: { type: DataTypes.STRING, allowNull: true },
+        car_engines: { type: DataTypes.STRING, allowNull: true },
+
+        news_text: { type: DataTypes.TEXT, allowNull: true }
+>>>>>>> 9de206efb49b8183a0366f9a0d0fc01e86640251
     }, {
         tableName: 'Posts'
     });

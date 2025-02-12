@@ -238,7 +238,10 @@ function UpdatePostPage() {
                 car_engines: data.car_engines || '',
                 news_text: data.news_text || ''
             }));
+<<<<<<< HEAD
             await fetchPost();
+=======
+>>>>>>> 9de206efb49b8183a0366f9a0d0fc01e86640251
         } catch (err) {
             console.error('Error fetching post:', err);
             setError('Server error');

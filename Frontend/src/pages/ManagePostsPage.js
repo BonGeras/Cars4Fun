@@ -125,7 +125,6 @@ function ManagePostsPage() {
         try {
             const userId = localStorage.getItem('userId');
             const role = localStorage.getItem('role');
-
             
             const category = categoryParam || 'reviews';
             let url = `/api/posts/${category}?role=${role}`;
